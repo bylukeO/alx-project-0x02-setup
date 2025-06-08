@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "@/components/layout/Header";
 import PostCard from "@/components/common/PostCard";
 import { ApiPost } from "../../interfaces";
 
-export default function Posts() {
-  const [posts, setPosts] = useState<ApiPost[]>([]);
-  const [loading, setLoading] = useState(true);
+interface PostsProps {
+  posts: ApiPost[];
+}
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts?_limit=10")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-        setLoading(false);
-      });
-  }, []);
-
+export default function Posts({ posts = [] }: PostsProps) {
   return (
     <>
       <Header />
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "2rem" }}>
         <h1>Posts Page</h1>
         <p>This page will display all posts.</p>
-        {loading ? (
-          <p>Loading...</p>
+        {posts.length === 0 ? (
+          <p>No posts found.</p>
         ) : (
           posts.map((post) => (
             <PostCard
@@ -37,4 +29,15 @@ export default function Posts() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10");
+  const posts: ApiPost[] = await res.json();
+
+  return {
+    props: {
+      posts,
+    },
+  };
 }
