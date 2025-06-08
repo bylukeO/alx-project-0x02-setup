@@ -8,6 +8,8 @@ const Header: React.FC = () => (
       <Link href="/home" style={{ margin: "0 1rem", color: "#fff", textDecoration: "none" }}>Home</Link>
       <Link href="/about" style={{ margin: "0 1rem", color: "#fff", textDecoration: "none" }}>About</Link>
       <Link href="/posts" style={{ margin: "0 1rem", color: "#fff", textDecoration: "none" }}>Posts</Link>
+      <Link href="/users" style={{ margin: "0 1rem", color: "#fff", textDecoration: "none" }}>Users</Link>
+
     </nav>
   </header>
 );
