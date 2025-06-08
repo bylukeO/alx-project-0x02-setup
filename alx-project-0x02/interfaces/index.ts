@@ -15,3 +15,16 @@ export interface ButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
 }
+
+export interface PostCardProps {
+  title: string;
+  content: string;
+  userId: string | number;
+}
+
+export interface ApiPost {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
